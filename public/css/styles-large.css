@@ -25,6 +25,10 @@
     justify-content: space-around;
   }
 
+	.bottom-content-container {
+		width: 90%;
+	}
+
   .bl-item:nth-child(even) {
     margin-right: 35px;
   }
@@ -36,4 +40,5 @@
     background-color: rgba(255, 255, 255, 0.5);
     color: var(--primary-color);
   }
+	
 }
