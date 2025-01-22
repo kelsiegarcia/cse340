@@ -1,0 +1,39 @@
+@media only screen and (min-width: 960px) {
+  body {
+    background-image: url('../images/site/checkerboard.jpg');
+    background-size: 100% auto;
+    background-repeat: repeat;
+  }
+
+  main {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .bottom-row {
+    display: grid;
+    grid-template-columns: 450px 450px;
+    justify-content: center;
+  }
+
+  .bottom-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .bl-item:nth-child(even) {
+    margin-right: 35px;
+  }
+
+  .float {
+    position: absolute;
+    top: 11%;
+    left: 18%;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: var(--primary-color);
+  }
+}
