@@ -236,3 +236,11 @@ VALUES   (
     'White',
     5
   );
+
+UPDATE public.inventory
+	SET inv_description = REPLACE(inv_description, 'small interiors', 'a huge interior')
+	WHERE inv_make = 'GM' AND inv_model = 'Hummer';
+
+UPDATE public.inventory
+SET inv_image = CONCAT(SUBSTRING(inv_image, 1, 8), 'vehicles/', SUBSTRING(inv_image, 9)),
+	inv_thumbnail = CONCAT(SUBSTRING(inv_thumbnail, 1, 8), 'vehicles/', SUBSTRING(inv_thumbnail, 9));
