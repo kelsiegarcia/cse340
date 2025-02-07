@@ -77,6 +77,48 @@ Util.buildClassificationGrid = async function (data) {
   return grid;
 };
 
+/* **************************************
+ * Build the vehicle detail view HTML
+ * ************************************ */
+Util.buildSingleVehiclePage = async function (vehicle) {
+  let carDetailsGrid;
+  carDetailsGrid = '<div id="vehicle-display">';
+  carDetailsGrid += '<div>';
+  carDetailsGrid +=
+    '<h1>' + vehicle.inv_make + ' ' + vehicle.inv_model + '</h1>';
+  carDetailsGrid +=
+    '<img src="' +
+    vehicle.inv_image +
+    '" alt="Image of ' +
+    vehicle.inv_make +
+    ' ' +
+    vehicle.inv_model +
+    ' on CSE Motors" />';
+  carDetailsGrid += '<hr />';
+  carDetailsGrid += '</div>';
+  carDetailsGrid += '<div id="vehicle-details">';
+  carDetailsGrid +=
+    '<h1>Price: $' +
+    new Intl.NumberFormat('en-US').format(vehicle.inv_price) +
+    '</h1>';
+  carDetailsGrid += '<p>' + vehicle.inv_description + '</p>';
+  carDetailsGrid += '<ul class="list-details">';
+  carDetailsGrid +=
+    '<li><strong>Mileage:</strong> ' +
+    new Intl.NumberFormat('en-US').format(vehicle.inv_miles) +
+    ' miles</li>';
+  carDetailsGrid +=
+    '<li><strong>Exterior color:</strong> ' + vehicle.inv_color + '</li>';
+  carDetailsGrid += '<li><strong>Year:</strong> ' + vehicle.inv_year + '</li>';
+  carDetailsGrid += '<li><strong>Make:</strong> ' + vehicle.inv_make + '</li>';
+  carDetailsGrid +=
+    '<li><strong>Model:</strong> ' + vehicle.inv_model + '</li>';
+  carDetailsGrid += '</ul>';
+  carDetailsGrid += '</div>';
+  carDetailsGrid += '</div>';
+  return carDetailsGrid;
+};
+
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for

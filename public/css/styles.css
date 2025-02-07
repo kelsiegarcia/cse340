@@ -212,3 +212,46 @@ footer {
 	font-weight: 600;
 }
 
+/* Vehicle display */
+
+#vehicle-display {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr;
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}
+
+#vehicle-display h1 {
+	background-color: aliceblue;;
+	text-align: center;
+	padding: 2rem;
+	margin: 0;
+	width: 100%;
+}
+	
+.list-details {
+	padding-inline-start: 0;
+	list-style-type: none;
+}
+
+.list-details li {
+	padding-bottom: 1rem;
+	font-size: 21px;
+}
+
+#vehicle-details > p {
+  margin-top: 1rem;
+	font-size: 21px;
+	padding: 0 1rem;
+}
+
+
+#vehicle-details {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	/* padding-left: 1rem; */
+}
+
+

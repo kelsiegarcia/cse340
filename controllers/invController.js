@@ -18,4 +18,18 @@ invCont.buildByClassificationId = async function (req, res, next) {
     grid,
   });
 };
+
+invCont.buildSingleVehicle = async function (req, res) {
+  const inv_id = req.params.carModelId;
+  const data = await invModel.getInventoryById(inv_id);
+  const carDetailsGrid = await utilities.buildSingleVehiclePage(data);
+  let nav = await utilities.getNav();
+  res.render('inventory/vehicle', {
+    title: 'Car Details',
+    nav,
+    carDetailsGrid,
+    errors: null,
+  });
+};
+
 module.exports = invCont;

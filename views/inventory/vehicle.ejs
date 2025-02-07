@@ -1,0 +1,10 @@
+<div class="container">
+  <% if (title) { %> <% } else { res.redirect('/') } %>
+	 <% if (errors) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error=> { %>
+    <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
+  <% } %> <%- carDetailsGrid %>
+</div>
