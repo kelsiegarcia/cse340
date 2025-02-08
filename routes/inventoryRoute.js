@@ -2,7 +2,6 @@
 const express = require('express');
 const router = new express.Router();
 const invController = require('../controllers/invController');
-const errorController = require('../controllers/errorController');
 
 // Route to build inventory by classification view
 router.get('/type/:classificationId', invController.buildByClassificationId);
@@ -11,6 +10,6 @@ router.get('/type/:classificationId', invController.buildByClassificationId);
 router.get('/detail/:carModelId', invController.buildSingleVehicle);
 
 // Route for the error view
-router.get('/error', errorController.errorHandler);
+router.get('/error', invController.errorHandler);
 
 module.exports = router;
