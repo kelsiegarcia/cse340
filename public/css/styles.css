@@ -310,4 +310,10 @@ footer {
 	text-align: center;
 }
 
+img {
+	max-width: 100%;
+	/* Image will never be larger than its container */
+	height: auto;
+	/* Maintain aspect ratio */
+}
 
