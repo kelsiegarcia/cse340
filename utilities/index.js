@@ -46,7 +46,7 @@ Util.buildClassificationGrid = async function (data) {
         vehicle.inv_make +
         ' ' +
         vehicle.inv_model +
-        ' on CSE Motors" /></a>';
+        ' on CSE Motors" ></a>';
       grid += '<div class="namePrice">';
       grid += '<h2>';
       grid +=
