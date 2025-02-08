@@ -33,12 +33,15 @@ invCont.buildSingleVehicle = async function (req, res) {
 };
 
 invCont.errorHandler = async (req, res, next) => {
-  // send error object to middleware
+  const error = new Error();
   if (req.query.status == 404) {
-    next({ status: 404 });
+    error.status = 404;
+    error.message = 'Page Not Found';
   } else {
-    next({ status: 500 });
+    error.status = 500;
+    error.message = 'Internal Server Error';
   }
+  next(error); // Pass the error with status and message
 };
 
 module.exports = invCont;
