@@ -13,6 +13,7 @@ const utilities = require('./utilities/');
 const static = require('./routes/static');
 const baseController = require('./controllers/baseController');
 const inventoryRoute = require('./routes/inventoryRoute');
+const errorController = require('./controllers/errorController');
 /* ***********************
  * View Engine and Templates
  *************************/
@@ -27,7 +28,9 @@ app.set('layout', './layouts/layout'); // not at views root
 app.use(static);
 // Index Route
 app.get('/', utilities.handleErrors(baseController.buildHome));
-app.use('/inv', inventoryRoute);
+app.use('/inv', utilities.handleErrors(inventoryRoute));
+app.get('/error', utilities.handleErrors(errorController.errorHandler));
+
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
   next({ status: 404, message: 'Sorry, we appear to have lost that page.' });

@@ -1,4 +1,4 @@
-@media only screen and (min-width: 800px) {
+@media only screen and (min-width: 870px) {
   body {
     background-image: url('../images/site/checkerboard.jpg');
     background-size: 100% auto;
@@ -80,4 +80,18 @@
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3),
       -2px -2px 5px rgba(255, 255, 255, 0.2);
   }
+
+	#inv-display {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: 1fr;
+		justify-items: center;
+		gap: 10px;
+	}
+
+	#vehicle-display {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: 1fr;
+	}
 }

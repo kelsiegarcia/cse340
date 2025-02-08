@@ -212,14 +212,58 @@ footer {
 	font-weight: 600;
 }
 
-/* Vehicle display */
-
-#vehicle-display {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	grid-template-rows: 1fr;
+/*Inventory display*/
+#inv-display {
 	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
+
+}
+
+#inv-display li {
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-bottom: 2rem;
+	border: 1px solid var(--primary-color);
+	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3),
+		-2px -2px 5px rgba(255, 255, 255, 0.2);
+	background-color: var(--tertiary-color);
+	padding: 2rem;
+	width: 100%;
+	border-radius: 5px;
+}
+
+#inv-display img {
+	width: 200px;
+	height: 133px;
+}
+
+.namePrice {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+.namePrice h2 {
+	font-size: 1.5rem;
+}
+
+.namePrice a {
+	text-decoration: none;
+	color: var(--secondary-color);
+}
+
+.namePrice span {
+	font-size: 1.2rem;
+	font-weight: 600;
+}
+
+
+/* Vehicle display */
+#vehicle-display {
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	text-align: center;
 }
 
 #vehicle-display h1 {
@@ -233,12 +277,14 @@ footer {
 .list-details {
 	padding-inline-start: 0;
 	list-style-type: none;
+	font-size: 1.5rem;
 }
 
 .list-details li {
 	padding-bottom: 1rem;
-	font-size: 21px;
-}
+	}
+
+
 
 #vehicle-details > p {
   margin-top: 1rem;
@@ -251,7 +297,17 @@ footer {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	/* padding-left: 1rem; */
+}
+
+.error > h2 {
+	color: blue;
+	font-size: 1.5rem;
+	text-align: center;
+
+}
+
+.error {
+	text-align: center;
 }
 
 
