@@ -92,7 +92,7 @@ Util.buildSingleVehiclePage = async function (vehicle) {
     vehicle.inv_make +
     ' ' +
     vehicle.inv_model +
-    ' on CSE Motors" />';
+    ' on CSE Motors" >';
   carDetailsGrid += '</div>';
   carDetailsGrid += '<div id="vehicle-details">';
   carDetailsGrid +=
