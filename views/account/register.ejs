@@ -1,0 +1,27 @@
+<h1><%=title%></h1>
+<%- messages() %>
+
+<div class="register-form">
+	<form action="/register" method="POST">
+		<fieldset>
+			<legend>Registeration (All fields required)</legend>
+			<div class="register-group">
+				<label for="firstName">First Name:</label><br>
+				<input type="text" id="firstName" name="account_firstname" autocomplete="given-name" required><br><br>
+
+				<label for="lastName">Last Name:</label><br>
+				<input type="text" id="lastName" name="account_lastname" autocomplete="family-name" required><br><br>
+
+				<label for="email">Email:</label><br>
+				<input type="email" id="email" name="account_email" autocomplete="email" required><br><br>
+
+				<label for="password">Password (12+ characters, 1+ capital, 1+ number, 1+ special):</label><br>
+				<input type="password" id="password" name="account_password" pattern="^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]).{12,}$"
+					title="Password must contain at least one uppercase letter, one number, one special character, and be at least 12 characters long."
+					autocomplete="new-password" required><span></span><br><br>
+
+				<input type="submit" value="Register Now" class="account-button">
+			</div>
+		</fieldset>
+	</form>
+</div>
