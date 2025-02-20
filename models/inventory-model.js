@@ -42,8 +42,43 @@ async function getInventoryById(inv_id) {
   }
 }
 
+// add new classification
+// inventory management
+/* ***************************
+ *  Add new classification
+ * ************************** */
+
+async function addClassification(classification_name) {
+  try {
+    const result = await pool.query(
+      'INSERT INTO public.classification (classification_name) VALUES ($1) RETURNING *',
+      [classification_name]
+    );
+    return result.rows[0];
+  } catch (error) {
+    console.error('addClassification error: ' + error);
+  }
+}
+
+/* ***************************
+ *  check for existing classification
+ * ************************** */
+
+async function checkExistingClassification(classification_name) {
+  try {
+    const sql =
+      'SELECT * FROM public.classification WHERE classification_name = $1';
+    const classification = await pool.query(sql, [classification_name]);
+    return classification.rowCount;
+  } catch (error) {
+    return error.message;
+  }
+}
+
 module.exports = {
   getClassifications,
   getInventoryByClassificationId,
   getInventoryById,
+  addClassification,
+  checkExistingClassification,
 };

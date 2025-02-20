@@ -1,0 +1,25 @@
+<h1><%= title %></h1>
+<%- messages() %> <% if (errors) { %>
+<ul class="notice">
+  <% errors.array().forEach(error=> { %>
+  <li><%= error.msg %></li>
+  <% }) %>
+</ul>
+<% } %>
+
+<form class="group" action="/inv/add-classification" method="post">
+  <div>
+    <label for="classificationName">Classification</label>
+    <input
+      type="text"
+      id="classificationName"
+      name="classification_name"
+      placeholder="Enter classification name"
+      pattern="^[a-zA-Z]+$"
+			value="<%= locals.classification_name %>"
+			autofocus
+      required
+    />
+  </div>
+  <button type="submit" class="main-button">Submit</button>
+</form>

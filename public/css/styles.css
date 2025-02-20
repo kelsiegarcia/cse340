@@ -315,49 +315,8 @@ footer {
   padding: 1rem;
 }
 
-.login-form, .register-form {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
 
-.login-form, .register-form legend {
-  font-weight: bold;
-  margin-bottom: 20px;
-  color: #333;
-}
-
-.form-group {
-  margin-bottom: 15px;
-}
-
-.form-grouplabel {
-  display: block;
-  margin-bottom: 5px;
-  color: darkblue;
-}
-
-
-.form-group input[type='email'], 
-.form-group input[type='password'] {
-  width: calc(100% - 12px);
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  font-size: 1em;
-  transition: border-color 0.2s ease-in-out;
-}
-
-.form-group input[type="email"]:focus,
-.form-group input[type="password"]:focus {
-  border-color: #007bff;
-  outline: none;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
-}
-
-.account-button {
+.main-button {
 	background-color: #0056b3;
 	color: #fff;
 	padding: 10px 15px;
@@ -369,11 +328,11 @@ footer {
 	width: 100%;
 }
 
-.account-button:hover {
+.main-button:hover {
 	background-color: #002855;
 }
 
-.account-button:focus {
+.main-button:focus {
 	outline: none;
 	box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
 }
@@ -396,7 +355,7 @@ footer {
 /* Registration form
 */
 
-.register-form {
+.form {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -406,25 +365,25 @@ footer {
 
 }
 
-.register-group {
+.group {
   display: flex;
 	flex-direction: column;
   color: darkblue;
   width: 50%;
 }
 
-.register-group label {
+.group label {
 	margin-bottom: 5px;
 }
 
-.register-form fieldset {
+.form fieldset {
 	display: flex;
 	flex-direction: column;
 	margin-bottom: 15px;
 	align-items: center;
 }
-.register-group input[type='email'],
-.register-group input[type='password'], .register-group input[type='text'] {
+.group input[type='email'],
+.group input[type='password'], .group input[type='text'] {
 	width: calc(100% - 12px);
 	padding: 10px;
 	border: 1px solid #ccc;
@@ -436,26 +395,26 @@ footer {
 
 
 
-.register-form label[required]::after {
+.form label[required]::after {
 	/* content: " *"; */
 	color: red;
 }
 
-.register-form input[type="text"]:invalid,
-.register-form input[type="email"]:invalid,
-.register-form input[type="password"]:invalid {
+.form input[type="text"]:invalid,
+.form input[type="email"]:invalid,
+.form input[type="password"]:invalid {
 	border-color: red;
 }
 
-.register-form input[type="text"]:invalid+span,
-.register-form input[type="email"]:invalid+span,
-.register-form input[type="password"]:invalid+span {
+.form input[type="text"]:invalid+span,
+.form input[type="email"]:invalid+span,
+.form input[type="password"]:invalid+span {
 	color: red;
 	font-style: italic;
 }
 
-.register-form input[type="text"]:invalid:focus,
-.register-form input[type="email"]:invalid:focus,
-.register-form input[type="password"]:invalid:focus {
+.form input[type="text"]:invalid:focus,
+.form input[type="email"]:invalid:focus,
+.form input[type="password"]:invalid:focus {
 	outline-color: red;
 }

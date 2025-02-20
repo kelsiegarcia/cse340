@@ -44,4 +44,49 @@ invCont.errorHandler = async (req, res, next) => {
   next(error); // Pass the error with status and message
 };
 
+invCont.buildManagement = async (req, res, next) => {
+  console.log('invCont.buildManagement called!');
+  let nav = await utilities.getNav();
+  res.render('inventory/management', {
+    title: 'Inventory Management',
+    nav,
+    errors: null,
+  });
+};
+
+invCont.buildAddClass = async (req, res, next) => {
+  let nav = await utilities.getNav();
+  res.render('inventory/add-classification', {
+    title: 'Add Classification',
+    nav,
+    errors: null,
+  });
+};
+
+// Process the add classification form
+// if insertion works, then create a new nav bar with the new classification and render the management view, with a success message
+invCont.processAddClass = async (req, res) => {
+  let nav = await utilities.getNav();
+  const classification_name = req.body.classification_name;
+  const classResult = await invModel.addClassification(classification_name);
+
+  if (classResult) {
+    req.flash('success', 'Classification added successfully');
+    nav = await utilities.getNav();
+
+    res.status(200).render('inventory/management', {
+      title: 'Vehicle Management',
+      nav,
+      errors: null,
+    });
+  } else {
+    req.flash('error', 'Error adding classification');
+    res.status(501).render('inventory/add-classification', {
+      title: 'Add classification',
+      nav,
+      errors: null,
+    });
+  }
+};
+
 module.exports = invCont;

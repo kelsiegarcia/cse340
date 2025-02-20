@@ -96,13 +96,13 @@ async function registerAccount(req, res) {
 
   let hashedPassword;
   try {
-    hashedPassword = await bcrypt.hash(account_password, 10);
+    hashedPassword = await bcrypt.hashSync(account_password, 10);
   } catch (error) {
     req.flash(
       'notice',
       'Sorry, there was an error processing the registration.'
     );
-    return res.status(500).render('account/register', {
+    res.status(500).render('account/register', {
       title: 'Registration',
       nav,
       errors: null,
@@ -123,14 +123,14 @@ async function registerAccount(req, res) {
       'notice',
       `Congratulations, you\'re registered ${account_firstname}. Please log in.`
     );
-    return res.status(201).render('account/login', {
+    res.status(201).render('account/login', {
       title: 'Login',
       nav,
       errors: null,
     });
   } else {
     req.flash('notice', 'Sorry, the registration failed.');
-    return res.status(501).render('account/register', {
+    res.status(501).render('account/register', {
       title: 'Registration',
       nav,
       errors: null,
