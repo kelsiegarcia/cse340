@@ -152,6 +152,8 @@ async function processLogin(req, res) {
     res.status(200).render('account/login', {
       title: 'Login',
       nav,
+      account_email,
+      errors: null,
     });
   } else {
     req.flash('notice', 'Sorry, the login failed.');
@@ -159,6 +161,7 @@ async function processLogin(req, res) {
       title: 'login',
       nav,
       account_email,
+      errors: null,
     });
   }
 }
