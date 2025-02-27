@@ -89,4 +89,42 @@ invCont.processAddClass = async (req, res) => {
   }
 };
 
+// Build add Vehicle view.
+invCont.buildAddVehicle = async (req, res) => {
+  let nav = await utilities.getNav();
+  let classificationList = await utilities.buildClassificationList();
+
+  res.render('inventory/add-vehicle', {
+    title: 'Add Vehicle',
+    nav,
+    errors: null,
+    classificationList,
+  });
+};
+
+// Process add vehicle. if insertion works then add the new vehicle to the selected classification and render the management view with a success message, if it doesn't work, add the error message to the flash and render the add vehicle view again.
+invCont.processAddVehicle = async (req, res) => {
+  let nav = await utilities.getNav();
+  const vehicle = req.body;
+  const vehicleResult = await invModel.addVehicle(vehicle);
+
+  if (vehicleResult) {
+    req.flash('success', 'Vehicle added successfully');
+    nav = await utilities.getNav();
+
+    res.status(200).render('inventory/management', {
+      title: 'Vehicle Management',
+      nav,
+      errors: null,
+    });
+  } else {
+    req.flash('error', 'Error adding vehicle');
+    res.status(501).render('inventory/add-vehicle', {
+      title: 'Add Vehicle',
+      nav,
+      errors: null,
+    });
+  }
+};
+
 module.exports = invCont;

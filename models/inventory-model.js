@@ -9,8 +9,6 @@ async function getClassifications() {
   );
 }
 
-module.exports = { getClassifications };
-
 /* ***************************
  *  Get all inventory items and classification_name by classification_id
  * ************************** */
@@ -75,10 +73,38 @@ async function checkExistingClassification(classification_name) {
   }
 }
 
+/* ***************************
+ *  insert new vehicle information into table and also selected classification table
+ * ************************** */
+
+async function addVehicle(vehicle) {
+  try {
+    const result = await pool.query(
+      'INSERT INTO public.inventory (classification_id, inv_make, inv_model, inv_year, inv_color, inv_price, inv_miles, inv_image, inv_description, inv_thumbnail) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *',
+      [
+        vehicle.classification_id,
+        vehicle.inv_make,
+        vehicle.inv_model,
+        vehicle.inv_year,
+        vehicle.inv_color,
+        vehicle.inv_price,
+        vehicle.inv_miles,
+        vehicle.inv_image,
+        vehicle.inv_description,
+        vehicle.inv_thumbnail,
+      ]
+    );
+    return result.rows[0];
+  } catch (error) {
+    console.error('addVehicle error: ' + error);
+  }
+}
+
 module.exports = {
   getClassifications,
   getInventoryByClassificationId,
   getInventoryById,
   addClassification,
   checkExistingClassification,
+  addVehicle,
 };

@@ -118,6 +118,33 @@ Util.buildSingleVehiclePage = async function (vehicle) {
 };
 
 /* ****************************************
+ classification list for add vehicle form
+ if no data is returned, return a message
+
+ **************************************** */
+
+Util.buildClassificationList = async function () {
+  let data = await invModel.getClassifications();
+  let classificationList =
+    '<select name="classification_id" id="classification_id">';
+  if (data && data.rows) {
+    data.rows.forEach((row) => {
+      classificationList +=
+        '<option value="' +
+        row.classification_id +
+        '">' +
+        row.classification_name +
+        '</option>';
+    });
+  } else {
+    classificationList +=
+      '<option value="">No classifications available</option>';
+  }
+  classificationList += '</select>';
+  return classificationList;
+};
+
+/* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for
  * General Error Handling

@@ -67,6 +67,7 @@ main {
   display: grid;
   grid-template-columns: 1fr;
   padding: 1rem;
+	justify-items: center;
 }
 
 img {
@@ -362,18 +363,13 @@ footer {
 	font-family: sans-serif;
 	background-color: #f4f4f4;
 	padding: 1rem;
-
 }
 
 .group {
-  display: flex;
+	display: flex;
 	flex-direction: column;
-  color: darkblue;
-  width: 50%;
-}
-
-.group label {
-	margin-bottom: 5px;
+	color: darkblue;
+	width: 50%;
 }
 
 .form fieldset {
@@ -382,8 +378,12 @@ footer {
 	margin-bottom: 15px;
 	align-items: center;
 }
+
 .group input[type='email'],
-.group input[type='password'], .group input[type='text'] {
+.group input[type='password'],
+.group input[type='text'],
+.group select,
+.group textarea {
 	width: calc(100% - 12px);
 	padding: 10px;
 	border: 1px solid #ccc;
@@ -391,12 +391,15 @@ footer {
 	box-sizing: border-box;
 	font-size: 1em;
 	transition: border-color 0.2s ease-in-out;
+	margin-bottom: 10px;
 }
 
-
+.form label {
+	margin-bottom: 5px;
+}
 
 .form label[required]::after {
-	/* content: " *"; */
+	content: " *";
 	color: red;
 }
 
@@ -415,6 +418,8 @@ footer {
 
 .form input[type="text"]:invalid:focus,
 .form input[type="email"]:invalid:focus,
-.form input[type="password"]:invalid:focus {
+.form input[type="password"]:invalid:focus,
+.group textarea:invalid:focus {
 	outline-color: red;
+	border-color: red;
 }
