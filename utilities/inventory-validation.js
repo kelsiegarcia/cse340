@@ -116,7 +116,7 @@ validate.vehicleRules = () => {
  * ********************************* */
 
 validate.vehicleData = async (req, res, next) => {
-  console.log('Request Body:', req.body);
+  // console.log('Request Body:', req.body);
   const {
     inv_make,
     inv_model,

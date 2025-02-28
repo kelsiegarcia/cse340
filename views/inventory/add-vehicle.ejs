@@ -12,12 +12,12 @@
 		<legend>Vehicle Information</legend>
 
 		<div class="form-group">
-			<label for="classification_id">Classification</label>
+			<label for="classificationList">Classification</label>
 			<%- classificationList %>
 		</div>
 
-		<label for="inv_make">Make</label>
-		<input type="text" name="inv_make" id="inv_make" pattern="^([0-9]*[a-zA-Z]){3,}" placeholder="At least 3 characters" value="<%= locals.inv_make %>" required>
+		<label for="invMake">Make</label>
+		<input type="text" name="inv_make" id="inv_make" pattern="^([0-9]*[a-zA-Z]){3,}" required placeholder="At least 3 characters" <% if (locals.inv_make) { %> value="<%= locals.inv_make %>" <% } %> >
 
 		<label for="inv_model">Model</label>
 		<input type="text" 
@@ -28,9 +28,11 @@
 
 		<label for="inv_description">Description</label>
 		<textarea 
-		name="inv_description" 
+		name="invDescription" 
 		id="inv_description" 
-		placeholder="At least 3 characters" required></textarea>
+		placeholder="At least 3 characters" required
+		<% if(locals.inv_description) { %>
+				value="<%= locals.inv_description %>"<% } %>></textarea>
 
 		<label for="inv_image">Image</label>
 		<input type="text" name="inv_image" id="inv_image" value="/images/vehicles/no-image.png"  required>

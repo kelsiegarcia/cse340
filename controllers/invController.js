@@ -7,18 +7,36 @@ const invCont = {};
  *  Build inventory by classification view
  * ************************** */
 invCont.buildByClassificationId = async function (req, res, next) {
+  let nav = await utilities.getNav();
   const classification_id = req.params.classificationId;
   const data = await invModel.getInventoryByClassificationId(classification_id);
-  const grid = await utilities.buildClassificationGrid(data);
-  let nav = await utilities.getNav();
-  const className = data[0].classification_name;
+  if (!data[0]) {
+    res.render('./inventory/classification', {
+      title: 'Vehicles',
+      nav,
+      grid: 'Sorry, no vehicles were found for that classification',
+      errors: null,
+    });
+  } else {
+    // build a view with the vehicles/inventory results
+    const grid = await utilities.buildClassificationGrid(data);
+    const className = data[0].classification_name;
+    res.render('./inventory/classification', {
+      title: className + ' vehicles',
+      nav,
+      grid,
+      errors: null,
+    });
+  }
+  // const grid = await utilities.buildClassificationGrid(data);
+  // const className = data[0].classification_name;
 
-  res.render('./inventory/classification', {
-    title: className + ' vehicles',
-    nav,
-    grid,
-    errors: null,
-  });
+  // res.render('./inventory/classification', {
+  //   title: className + ' vehicles',
+  //   nav,
+  //   grid,
+  //   errors: null,
+  // });
 };
 
 invCont.buildSingleVehicle = async function (req, res) {
@@ -47,7 +65,7 @@ invCont.errorHandler = async (req, res, next) => {
 };
 
 invCont.buildManagement = async (req, res, next) => {
-  console.log('invCont.buildManagement called!');
+  // console.log('invCont.buildManagement called!');
   let nav = await utilities.getNav();
   res.render('inventory/management', {
     title: 'Inventory Management',
@@ -66,7 +84,6 @@ invCont.buildAddClass = async (req, res, next) => {
 };
 
 // Process the add classification form
-// if insertion works, then create a new nav bar with the new classification and render the management view, with a success message
 invCont.processAddClass = async (req, res) => {
   let nav = await utilities.getNav();
   const classification_name = req.body.classification_name;
@@ -99,13 +116,14 @@ invCont.buildAddVehicle = async (req, res) => {
   res.render('inventory/add-vehicle', {
     title: 'Add Vehicle',
     nav,
+    classificationList: classificationList,
     errors: null,
-    classificationList,
   });
 };
 
-// Process add vehicle. if insertion works then add the new vehicle to the selected classification and render the management view with a success message, if it doesn't work, add the error message to the flash and render the add vehicle view again.
+// Process add vehicle.
 invCont.processAddVehicle = async (req, res) => {
+  // console.log('processAddVehicle called');
   let nav = await utilities.getNav();
   const vehicle = req.body;
   const vehicleResult = await invModel.addVehicle(vehicle);
@@ -118,13 +136,16 @@ invCont.processAddVehicle = async (req, res) => {
       title: 'Vehicle Management',
       nav,
       errors: null,
+      classificationList: classificationList,
     });
   } else {
     req.flash('error', 'Error adding vehicle');
+    // console.log(vehicle.classification_id);
     res.status(501).render('inventory/add-vehicle', {
       title: 'Add Vehicle',
       nav,
       errors: null,
+      classificationList: classificationList,
     });
   }
 };

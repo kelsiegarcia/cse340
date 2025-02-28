@@ -119,27 +119,24 @@ Util.buildSingleVehiclePage = async function (vehicle) {
 
 /* ****************************************
  classification list for add vehicle form
- if no data is returned, return a message
 
  **************************************** */
 
-Util.buildClassificationList = async function () {
+Util.buildClassificationList = async function (classification_id = null) {
   let data = await invModel.getClassifications();
   let classificationList =
-    '<select name="classification_id" id="classification_id">';
-  if (data && data.rows) {
-    data.rows.forEach((row) => {
-      classificationList +=
-        '<option value="' +
-        row.classification_id +
-        '">' +
-        row.classification_name +
-        '</option>';
-    });
-  } else {
-    classificationList +=
-      '<option value="">No classifications available</option>';
-  }
+    '<select name="classification_id" id="classificationList" required>';
+  classificationList += "<option value=''>Choose a Classification</option>";
+  data.rows.forEach((row) => {
+    classificationList += '<option value="' + row.classification_id + '"';
+    if (
+      classification_id != null &&
+      row.classification_id == classification_id
+    ) {
+      classificationList += ' selected ';
+    }
+    classificationList += '>' + row.classification_name + '</option>';
+  });
   classificationList += '</select>';
   return classificationList;
 };
