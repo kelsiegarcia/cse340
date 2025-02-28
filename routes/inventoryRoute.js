@@ -8,9 +8,7 @@ const invValidate = require('../utilities/inventory-validation');
 // Route to build inventory by classification view
 router.get(
   '/type/:classificationId',
-  utilities.handleErrors(async (req, res) => {
-    await invController.buildByClassificationId(req, res);
-  })
+  utilities.handleErrors(invController.buildByClassificationId)
 );
 
 // Route to build specific vehicle model details view
