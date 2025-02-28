@@ -9,8 +9,6 @@ const invValidate = require('../utilities/inventory-validation');
 router.get(
   '/type/:classificationId',
   utilities.handleErrors(async (req, res) => {
-    console.log('Route /type/:classificationId hit!');
-    console.log('classificationId:', req.params.classificationId);
     await invController.buildByClassificationId(req, res);
   })
 );
