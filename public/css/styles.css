@@ -378,27 +378,13 @@ footer {
 	color: red;
 }
 
-.form input[type="text"]:invalid,
-.form input[type="email"]:invalid,
-.form input[type="password"]:invalid {
-	border-color: red;
-}
-
-.form input[type="text"]:invalid+span,
-.form input[type="email"]:invalid+span,
-.form input[type="password"]:invalid+span {
-	color: red;
-	font-style: italic;
-}
-
 .form input[type="text"]:invalid:focus,
-.form input[type="email"]:invalid:focus,
-.form input[type="password"]:invalid:focus,
+.group input[type="email"]:invalid,
+.group input[type="password"]:invalid,
+.group input[type="text"]:invalid:focus,
 .group textarea:invalid:focus {
 	outline-color: red;
-	border-color: red;
 }
-
 
 .management-links {
 	display: flex;

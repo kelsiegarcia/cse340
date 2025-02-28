@@ -62,27 +62,32 @@ validate.vehicleRules = () => {
     body('inv_model')
       .trim()
       .isLength({ min: 3 })
+      .withMessage('Model must be at least 3 characters long.')
       .notEmpty()
-      .withMessage('Model must be at least 3 characters long.'),
+      .withMessage('Model must be provided.'),
     body('inv_year')
       .trim()
-      .isNumeric()
       .notEmpty()
+      .withMessage('Year must be provided.')
+      .isNumeric()
       .withMessage('Year must be an integer.'),
     body('inv_color')
       .trim()
       .isLength({ min: 3 })
+      .withMessage('Color must be at least 3 characters long.')
       .notEmpty()
-      .withMessage('Color must be at least 3 characters long.'),
+      .withMessage('Color must be provided.'),
     body('inv_price')
       .trim()
-      .isNumeric()
       .notEmpty()
+      .withMessage('Price must be provided.')
+      .isNumeric()
       .withMessage('Price must be an integer.'),
     body('inv_miles')
       .trim()
-      .isNumeric()
       .notEmpty()
+      .withMessage('Miles must be provided.')
+      .isNumeric()
       .withMessage('Miles must be an integer.'),
     body('inv_image')
       .trim()
@@ -90,8 +95,9 @@ validate.vehicleRules = () => {
       .withMessage('Image must be a valid URL.'),
     body('inv_description')
       .trim()
-      .isLength({ min: 3 })
       .notEmpty()
+      .withMessage('Description must be provided.')
+      .isLength({ min: 3 })
       .withMessage('Description must be at least 3 characters long.'),
     body('inv_thumbnail')
       .trim()
@@ -110,6 +116,7 @@ validate.vehicleRules = () => {
  * ********************************* */
 
 validate.vehicleData = async (req, res, next) => {
+  console.log('Request Body:', req.body);
   const {
     inv_make,
     inv_model,
