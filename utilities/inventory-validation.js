@@ -104,10 +104,8 @@ validate.vehicleRules = () => {
       .notEmpty()
       .withMessage('Thumbnail must be a valid URL.'),
     body('classification_id')
-      .trim()
-      .isInt()
-      .notEmpty()
-      .withMessage('Classification ID must be an integer.'),
+      .isNumeric()
+      .withMessage('Please select a classification.'),
   ];
 };
 
