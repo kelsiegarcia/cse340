@@ -21,6 +21,7 @@ async function getInventoryByClassificationId(classification_id) {
       WHERE i.classification_id = $1`,
       [classification_id]
     );
+    console.log(data.rows);
     return data.rows;
   } catch (error) {
     console.error('getclassificationsbyid error ' + error);
@@ -97,6 +98,7 @@ async function addVehicle(vehicle) {
     return result.rows[0];
   } catch (error) {
     console.error('addVehicle error: ' + error);
+    return null;
   }
 }
 
