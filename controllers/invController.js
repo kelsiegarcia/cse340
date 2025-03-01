@@ -125,6 +125,7 @@ invCont.buildAddVehicle = async (req, res) => {
 invCont.processAddVehicle = async (req, res) => {
   // console.log('processAddVehicle called');
   let nav = await utilities.getNav();
+  const classificationList = await utilities.buildClassificationList();
   const vehicle = req.body;
   const vehicleResult = await invModel.addVehicle(vehicle);
 

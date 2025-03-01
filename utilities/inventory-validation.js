@@ -54,6 +54,9 @@ validate.classData = async (req, res, next) => {
 
 validate.vehicleRules = () => {
   return [
+    body('classification_id')
+      .isNumeric()
+      .withMessage('Please select a classification.'),
     body('inv_make')
       .trim()
       .isLength({ min: 3 })
@@ -65,47 +68,46 @@ validate.vehicleRules = () => {
       .withMessage('Model must be at least 3 characters long.')
       .notEmpty()
       .withMessage('Model must be provided.'),
-    body('inv_year')
-      .trim()
-      .notEmpty()
-      .withMessage('Year must be provided.')
-      .isNumeric()
-      .withMessage('Year must be an integer.'),
-    body('inv_color')
-      .trim()
-      .isLength({ min: 3 })
-      .withMessage('Color must be at least 3 characters long.')
-      .notEmpty()
-      .withMessage('Color must be provided.'),
-    body('inv_price')
-      .trim()
-      .notEmpty()
-      .withMessage('Price must be provided.')
-      .isNumeric()
-      .withMessage('Price must be an integer.'),
-    body('inv_miles')
-      .trim()
-      .notEmpty()
-      .withMessage('Miles must be provided.')
-      .isNumeric()
-      .withMessage('Miles must be an integer.'),
-    body('inv_image')
-      .trim()
-      .notEmpty()
-      .withMessage('Image must be a valid URL.'),
     body('inv_description')
       .trim()
       .notEmpty()
       .withMessage('Description must be provided.')
       .isLength({ min: 3 })
       .withMessage('Description must be at least 3 characters long.'),
+    body('inv_image')
+      .trim()
+      .notEmpty()
+      .withMessage('Image must be a valid URL.'),
     body('inv_thumbnail')
       .trim()
       .notEmpty()
       .withMessage('Thumbnail must be a valid URL.'),
-    body('classification_id')
+    body('inv_price')
+      .trim()
+      .notEmpty()
+      .withMessage('Price must be provided.')
       .isNumeric()
-      .withMessage('Please select a classification.'),
+      .withMessage('Price must be an integer.'),
+    body('inv_year')
+      .trim()
+      .isLength({ min: 4 })
+      .withMessage('Year must be 4 characters long.')
+      .notEmpty()
+      .withMessage('Year must be provided.')
+      .isNumeric()
+      .withMessage('Year must be an integer.'),
+    body('inv_miles')
+      .trim()
+      .notEmpty()
+      .withMessage('Miles must be provided.')
+      .isNumeric()
+      .withMessage('Miles must be an integer.'),
+    body('inv_color')
+      .trim()
+      .isLength({ min: 3 })
+      .withMessage('Color must be at least 3 characters long.')
+      .notEmpty()
+      .withMessage('Color must be provided.'),
   ];
 };
 
@@ -116,37 +118,40 @@ validate.vehicleRules = () => {
 validate.vehicleData = async (req, res, next) => {
   // console.log('Request Body:', req.body);
   const {
+    classification_id,
     inv_make,
     inv_model,
-    inv_year,
-    inv_color,
-    inv_price,
-    inv_miles,
-    inv_image,
     inv_description,
+    inv_image,
     inv_thumbnail,
-    classification_id,
+    inv_price,
+    inv_year,
+    inv_miles,
+    inv_color,
   } = req.body;
   let errors = [];
   errors = validationResult(req);
   if (!errors.isEmpty()) {
     let nav = await utilities.getNav();
-    let classificationList = await utilities.buildClassificationList();
+    let classificationList = await utilities.buildClassificationList(
+      classification_id
+    );
+
     res.render('inventory/add-vehicle', {
       errors,
       title: 'Add Vehicle',
       nav,
+      classificationList,
+      classification_id,
       inv_make,
       inv_model,
+      inv_description,
+      inv_image,
+      inv_thumbnail,
+      inv_price,
       inv_year,
       inv_color,
-      inv_price,
       inv_miles,
-      inv_image,
-      inv_description,
-      inv_thumbnail,
-      classification_id,
-      classificationList,
     });
     return;
   }
