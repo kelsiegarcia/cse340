@@ -28,15 +28,6 @@ invCont.buildByClassificationId = async function (req, res, next) {
       errors: null,
     });
   }
-  // const grid = await utilities.buildClassificationGrid(data);
-  // const className = data[0].classification_name;
-
-  // res.render('./inventory/classification', {
-  //   title: className + ' vehicles',
-  //   nav,
-  //   grid,
-  //   errors: null,
-  // });
 };
 
 invCont.buildSingleVehicle = async function (req, res) {
@@ -123,7 +114,6 @@ invCont.buildAddVehicle = async (req, res) => {
 
 // Process add vehicle.
 invCont.processAddVehicle = async (req, res) => {
-  // console.log('processAddVehicle called');
   let nav = await utilities.getNav();
   const classificationList = await utilities.buildClassificationList();
   const vehicle = req.body;
