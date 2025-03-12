@@ -51,4 +51,30 @@ router.post(
   utilities.handleErrors(invController.processAddVehicle)
 );
 
+// Route to show inventory/management view with classification select menu
+router.get(
+  '/getInventory/:classification_id',
+  utilities.handleErrors(invController.getInventoryJSON)
+);
+
+// Route to update/edit a vehicle/inventory
+router.get('/edit/:inv_id', utilities.handleErrors(invController.editVehicle));
+
+// Route to process update view (update vehicle/inventory)
+router.post(
+  '/update',
+  invValidate.vehicleRules(),
+  invValidate.checkUpdateData,
+  utilities.handleErrors(invController.updateInventory)
+);
+
+// Route to confirm delete of a vehicle/inventory
+router.get(
+  '/delete/:inv_id',
+  utilities.handleErrors(invController.confirmDelete)
+);
+
+// Route to delete a vehicle/inventory
+router.post('/delete', utilities.handleErrors(invController.deleteVehicle));
+
 module.exports = router;

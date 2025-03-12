@@ -1,0 +1,69 @@
+<h1><%= title %></h1>
+<%- messages() %> <% if (errors) { %>
+<ul class="notice">
+  <% errors.array().forEach(error=> { %>
+  <li><%= error.msg %></li>
+  <% }) %>
+</ul>
+<% } %>
+
+<form class="group" action="/inv/delete" method="post" id="deleteForm">
+  <fieldset>
+    <legend>Vehicle Information</legend>
+		<p>Confirm Deletion - This is a permanent action</p>
+
+		<input type="hidden" name="inv_id" value="<%= locals.inv_id %>">
+
+    <div class="form-group">
+      <!-- <label for="classificationList">Classifi -->
+    </div>
+
+    <label for="inv_make">Make</label>
+    <input
+      type="text"
+      name="inv_make"
+      id="inv_make"
+      pattern="^([0-9]*[a-zA-Z]){3,}"
+      required
+      placeholder="At least 3 characters"
+			readonly
+      value="<%= locals.inv_make %>" >
+
+    <label for="inv_model">Model</label>
+    <input
+      type="text"
+      name="inv_model"
+      id="inv_model"
+      pattern="^([0-9]*[a-zA-Z]){3,}[0-9]*$"
+      placeholder="At least 3 characters"
+			readonly
+      value="<%= locals.inv_model %>"
+      required
+    >
+
+    <label for="inv_price">Price</label>
+    <input
+      type="text"
+      name="inv_price"
+      id="inv_price"
+      placeholder="decimal or integer"
+			readonly
+      value="<%=locals.inv_price %>"
+      required
+    >
+
+    <label for="inv_year">Year</label>
+    <input
+      type="text"
+      name="inv_year"
+      id="inv_year"
+      pattern="\d{4}"
+      placeholder="4 digit year"
+			readonly
+      value="<%= locals.inv_year %>"
+      required
+    >
+
+    <button type="submit" name="submit" value="Delete Vehicle" class="main-button">Delete Vehicle</button>
+  </fieldset>
+</form>

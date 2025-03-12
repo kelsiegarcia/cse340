@@ -15,6 +15,17 @@
 <% } %>
 
 <div class="management-links">
-	<a href="/inv/add-classification" class="manage-btn">Add New Classification</a>
-	<a href="/inv/add-vehicle" class="manage-btn">Add New Vehicle</a>
+  <a href="/inv/add-classification" class="manage-btn"
+    >Add New Classification</a
+  >
+  <a href="/inv/add-vehicle" class="manage-btn">Add New Vehicle</a>
 </div>
+<div>
+  <h2>Manage Inventory</h2>
+  <p>Select a classification from the list:</p>
+  <%- classificationSelect %>
+  <table id="inventoryDisplay"></table>
+  <noscript>JavaScript must be enabled to use this page.</noscript>
+</div>
+
+<script src="../../js/inventory.js"></script>
