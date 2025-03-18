@@ -37,7 +37,6 @@ router.get('/logout', utilities.handleErrors(accountController.accountLogout));
 
 router.get(
   '/edit/:account_id',
-  // utilities.checkAuth,
   utilities.handleErrors(accountController.buildEditAccount)
 );
 

@@ -170,15 +170,6 @@ async function accountManagement(req, res) {
 }
 
 /* ****************************************
- *  Account logout
- * *************************************** */
-
-async function accountLogout(req, res) {
-  res.clearCookie('jwt');
-  res.redirect('/account/login');
-}
-
-/* ****************************************
  *  Update Account Information
  * *************************************** */
 
@@ -277,7 +268,7 @@ async function processUpdate(req, res) {
 }
 
 /* ****************************************
- *  Update Password grab the password and hash it and send it to the model and return the result
+ *  Update Password
  * *************************************** */
 async function processPassword(req, res) {
   const { account_password, account_id } = req.body;
