@@ -121,6 +121,9 @@ invCont.processAddVehicle = async (req, res) => {
   const classificationList = await utilities.buildClassificationList();
   const vehicle = req.body;
   const vehicleResult = await invModel.addVehicle(vehicle);
+  const classificationSelect = await utilities.buildClassificationList(
+    vehicle.classification_id
+  );
 
   if (vehicleResult) {
     req.flash('success', 'Vehicle added successfully');
@@ -131,6 +134,7 @@ invCont.processAddVehicle = async (req, res) => {
       nav,
       errors: null,
       classificationList: classificationList,
+      classificationSelect: classificationSelect,
     });
   } else {
     req.flash('error', 'Error adding vehicle');
@@ -140,6 +144,7 @@ invCont.processAddVehicle = async (req, res) => {
       nav,
       errors: null,
       classificationList: classificationList,
+      classificationSelect: classificationSelect,
     });
   }
 };
