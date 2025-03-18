@@ -1,9 +1,5 @@
 @media only screen and (min-width: 870px) {
-  body {
-    background-image: url('../images/site/checkerboard.jpg');
-    background-size: 100% auto;
-    background-repeat: repeat;
-  }
+  
 
 	.navigation ul {
 		display: flex;
@@ -22,7 +18,7 @@
   .top-content img {
     width: 100%;
     height: auto;
-    max-width: 400px;
+    /* max-width: 400px; */
   }
 
   .bottom-row {
@@ -47,8 +43,8 @@
 
   .float {
     position: absolute;
-    top: 11%;
-    left: 18%;
+    /* top: 11%; */
+    /* left: 18%; */
     background-color: rgba(255, 255, 255, 0.5);
     color: var(--primary-color);
   }

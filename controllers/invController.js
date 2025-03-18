@@ -281,4 +281,5 @@ invCont.deleteVehicle = async (req, res, next) => {
     res.redirect('inventory/delete-confirm/' + inv_id);
   }
 };
+
 module.exports = invCont;

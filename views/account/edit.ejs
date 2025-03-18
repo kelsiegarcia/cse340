@@ -1,0 +1,64 @@
+<div>
+  <h1><%=title%></h1>
+</div>
+<div><%- messages() %></div>
+
+<% if (errors) { %>
+<ul class="notice">
+  <% errors.array().forEach(error=> { %>
+  <li><%= error.msg %></li>
+  <% }) %>
+</ul>
+<% } %>
+
+
+<div class="form">
+	<form action="/account/update/<%= locals.account_id %>" method="POST" id="updateForm">
+		<fieldset>
+			<legend>Registeration (All fields required)</legend>
+			<div class="group">
+				<label for="accountFirstname">First Name:</label>
+				<input type="text" id="accountFirstname" name="account_firstname" autocomplete="given-name" required
+					value="<%= locals.account_firstname %>" /><br />
+
+				<label for="accountLastname">Last Name:</label>
+				<input type="text" id="accountLastname" name="account_lastname" autocomplete="family-name" required
+					value="<%= locals.account_lastname %>" /><br />
+
+				<label for="account_email">Email:</label>
+				<input type="email" id="account_email" name="account_email" autocomplete="email" required
+					value="<%= locals.account_email %>" /><br />
+					<script>
+						const accountId = "<%= locals.account_id %>";
+							console.log(accountId);
+					</script>
+				<input type="hidden" name="account_id" class="accountID" <% if(locals.account_id) { %> value="<%= locals.account_id %>"<% } %> />
+				<input type="submit" value="Update Account" id="button"class="main-button" disabled />
+			</div>
+		</fieldset>
+	</form>
+
+	<form action="/account/update-password/<%= locals.account_id %>" method="POST" id="passwordForm">
+		<fieldset>
+			<legend>Update Password</legend>
+			<p>Clicking update will change your password</p>
+			<div class="group"></div>
+				<label for="account_password">Password (12+ characters, 1+ capital, 1+ number, 1+ special):</label>
+				<input type="password" name="account_password" id="account_password"
+					pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
+					title="Password must contain at least one uppercase letter, one number, one special character, and be at least 12 characters long."
+					autocomplete="new-password" required /><span></span><br />
+
+				<input type="submit" value="Update password" class="main-button" id="updatePasswordBtn" disabled/>
+
+				<input type="hidden" name="account_id" value="<%= locals.account_id ? locals.account_id : '' %>" />
+				
+				
+			</div>
+		</fieldset>
+	</form>
+</div>
+
+<script src="../../js/account-update.js"></script>
+
+

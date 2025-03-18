@@ -4,11 +4,30 @@
 <div><%- messages() %></div>
 
 <% if (errors) { %>
-	<ul class="notice">
-		<% errors.array().forEach(error=> { %>
-		<li><%= error.msg %></li>
-		<% }) %>
-	</ul>
+<ul class="notice">
+  <% errors.array().forEach(error=> { %>
+  <li><%= error.msg %></li>
+  <% }) %>
+</ul>
 <% } %>
 
-<p> You're logged in</p>
+
+<div class="account-management">
+	<% let account = locals.accountData %>
+	<% if (locals.loggedin) { %>
+		<h2>Welcome, <%= locals.accountData.account_firstname %></h2>
+		<p>You're logged in</p>
+		<div class="account-tools">
+			<div class="heading">
+			<h2>Account Management</h2>
+			<p class="manage-btn"><a href="/account/edit/<%= accountData.account_id %>">Update Account Information</a></p></div>
+
+			<% if (locals.accountData.account_type === "Admin" || locals.accountData.account_type === "Employee" ) { %>
+				<div class="heading">
+					<h2>Manage Inventory</h2>
+					<p class="manage-btn"><a href="/inv/">Access Inventory Management</a></p></div>
+			<% } %> 
+		<% } %>
+	</div>
+</div>
+

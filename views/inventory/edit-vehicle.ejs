@@ -7,7 +7,7 @@
 </ul>
 <% } %>
 
-<form class="group" action="/inv/update" method="post" id="updateForm">
+<form class="group edit-group" action="/inv/update" method="post" id="updateForm">
   <fieldset>
     <legend>Vehicle Information</legend>
 
@@ -44,8 +44,7 @@
       id="inv_description"
       placeholder="At least 3 characters"
       required
-    >
-<%= locals.inv_description %></textarea
+    ><%= locals.inv_description %></textarea
     >
 
     <label for="inv_image">Image</label>

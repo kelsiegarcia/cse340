@@ -188,4 +188,31 @@ Util.checkLogin = (req, res, next) => {
   }
 };
 
+/* ****************************************
+ *  Check authorization based on employee or admin account type
+ * ************************************ */
+
+Util.checkAuth = (req, res, next) => {
+  let auth = false;
+
+  if (res.locals.loggedin) {
+    const account = res.locals.accountData;
+    // terinary operator to check if account is admin or employee
+    account.account_type == 'Admin' || account.account_type == 'Employee'
+      ? (auth = true)
+      : (auth = false);
+  }
+
+  if (!auth) {
+    req.flash(
+      'notice',
+      'You need to be an admin or employee to access this page.'
+    );
+    res.redirect('/account/login');
+    return;
+  } else {
+    next();
+  }
+};
+
 module.exports = Util;
