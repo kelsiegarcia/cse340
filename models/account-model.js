@@ -119,20 +119,6 @@ async function updatePassword(account_password, account_id) {
   }
 }
 
-/* *****************************
- *   find by id and Check for existing password
- * ***************************** */
-
-// async function checkExistingPassword(account_password) {
-//   try {
-//     const sql = 'SELECT * FROM account WHERE account_password = $1';
-//     const password = await pool.query(sql, [account_password]);
-//     return password.rowCount;
-//   } catch (error) {
-//     return error.message;
-//   }
-// }
-
 module.exports = {
   registerAccount,
   checkExistingEmail,
@@ -141,5 +127,4 @@ module.exports = {
   getAccountById,
   updateAccount,
   updatePassword,
-  // checkExistingPassword,
 };
