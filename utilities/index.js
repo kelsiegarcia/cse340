@@ -225,7 +225,6 @@ Util.buildReviewListByInv_id = async function (data) {
   if (data.length > 0) {
     reviewList += '<h1>Customer Reviews</h1>';
     reviewList += '<ul class="reviews-list-inv">';
-    reviewList += '<ul>';
     data.forEach((row) => {
       let initial = row.account_firstname.charAt(0).toUpperCase();
       let displayName = initial + row.account_lastname;
@@ -272,10 +271,11 @@ Util.buildReviewByAccount_id = async function (reviewData) {
   let reviewList = '';
   if (reviewData.length > 0) {
     reviewList += '<div class="reviews-byAccount">';
+    reviewList += '<div class="reviews-byAccount">';
     reviewList += '<h2>My Reviews</h2><hr>';
     reviewList += '<ul class="my-reviews">';
     reviewData.forEach((row) => {
-      // get formated date from timestamp
+      // get formatted date from timestamp
       let dt = new Date(row.review_date); //review_date
       let month = dt.toLocaleString('en-US', { month: 'long' });
       let day = dt.getDate();
@@ -285,7 +285,8 @@ Util.buildReviewByAccount_id = async function (reviewData) {
       reviewList += `<a href="/reviews/edit-review/${row.review_id}" title='Click to update'> Modify </a>`;
       reviewList += `|<a href="/reviews/delete-review/${row.review_id}" title='Click to delete'> Delete</a></li>`;
     });
-    reviewList += '</ul></div>';
+    reviewList += '</ul>';
+    reviewList += '</div>';
   } else {
     reviewList += '<p class="no-reviews">You have not left any reviews.</p>';
   }

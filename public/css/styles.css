@@ -509,7 +509,7 @@ table tr td:first-child {
 
 .review-list h1 {
 	font-size: 2rem;
-	text-align: 20px;
+  text-align: center;
 }
 
 .review-text {
