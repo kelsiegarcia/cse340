@@ -496,9 +496,10 @@ table tr td:first-child {
 
 .reviews-list-inv li {
 	border: 1px solid #0056b3;
-	padding: 5px;
+	padding: 10px;
 	margin: 15px;
 	border-radius: 3px;
+	width: 300px;
 }
 
 .reviews-list-inv {
