@@ -232,6 +232,12 @@ footer {
   border-radius: 5px;
 }
 
+#inv-display li img {
+	width: auto;
+	height: 125px;
+	object-fit: cover;
+}
+
 /* Vehicle display */
 #vehicle-display {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -510,7 +516,7 @@ table tr td:first-child {
 
 .review-list h1 {
 	font-size: 2rem;
-  text-align: center;
+	padding-left: 20px;
 }
 
 .review-text {
