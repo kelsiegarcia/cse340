@@ -168,10 +168,15 @@ Util.checkJWTToken = (req, res, next) => {
         }
         res.locals.accountData = accountData;
         res.locals.loggedin = 1;
+        req.user = accountData;
+        res.locals.authUser = accountData;
+        // console.log('req.user in checkJWTToken: ', req.user);
         next();
       }
     );
   } else {
+    req.user = null; //set to null if no JWT
+    res.locals.authUser = null;
     next();
   }
 };
@@ -213,6 +218,79 @@ Util.checkAuth = (req, res, next) => {
   } else {
     next();
   }
+};
+
+Util.buildReviewListByInv_id = async function (data) {
+  let reviewList = '';
+  if (data.length > 0) {
+    reviewList += '<h1>Customer Reviews</h1>';
+    reviewList += '<ul class="reviews-list-inv">';
+    reviewList += '<ul>';
+    data.forEach((row) => {
+      let initial = row.account_firstname.charAt(0).toUpperCase();
+      let displayName = initial + row.account_lastname;
+
+      let dt = new Date(row.review_date);
+      let month = dt.toLocaleString('en-US', { month: 'long' });
+      let day = dt.getDate();
+      let year = dt.getFullYear();
+      let formattedDate = `${month} ${day}, ${year}`;
+
+      reviewList += '<li>';
+      reviewList += '<span class="review-auth">';
+      reviewList += displayName;
+      reviewList += '</span> wrote on ';
+      reviewList += formattedDate;
+      reviewList += '<p>';
+      reviewList += row.review_text;
+      reviewList += '</p></li>';
+    });
+    reviewList += '</ul>';
+  }
+  return reviewList;
+};
+
+/*************************************
+ * Check for reviews return string
+ *************************************/
+
+Util.buildReviewListHTML = async function (reviewData) {
+  let reviewList = '';
+  if (reviewData.length > 0) {
+    reviewList = await Util.buildReviewListByInv_id(reviewData);
+  } else {
+    reviewList = '<p class="no-reviews">Be the first to leave a review.</p>';
+  }
+
+  return reviewList;
+};
+
+/***********************************
+ * Build reviews by account_id
+ ***********************************/
+Util.buildReviewByAccount_id = async function (reviewData) {
+  let reviewList = '';
+  if (reviewData.length > 0) {
+    reviewList += '<div class="reviews-byAccount">';
+    reviewList += '<h2>My Reviews</h2><hr>';
+    reviewList += '<ul class="my-reviews">';
+    reviewData.forEach((row) => {
+      // get formated date from timestamp
+      let dt = new Date(row.review_date); //review_date
+      let month = dt.toLocaleString('en-US', { month: 'long' });
+      let day = dt.getDate();
+      let year = dt.getFullYear();
+      let formattedDate = `${month} ${day}, ${year}`;
+      reviewList += `<li>Reviewed the ${row.inv_year} ${row.inv_make} ${row.inv_model} on ${formattedDate} |`;
+      reviewList += `<a href="/reviews/edit-review/${row.review_id}" title='Click to update'> Modify </a>`;
+      reviewList += `|<a href="/reviews/delete-review/${row.review_id}" title='Click to delete'> Delete</a></li>`;
+    });
+    reviewList += '</ul></div>';
+  } else {
+    reviewList += '<p class="no-reviews">You have not left any reviews.</p>';
+  }
+
+  return reviewList;
 };
 
 module.exports = Util;

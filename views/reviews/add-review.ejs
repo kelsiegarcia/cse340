@@ -1,0 +1,30 @@
+<div>
+  <h1><%=title%></h1>
+</div>
+
+
+<% if (errors) { %>
+<ul class="notice">
+  <% errors.array().forEach(error=> { %>
+  <li><%= error.msg %></li>
+  <% }) %>
+</ul>
+<% } %>
+
+<div class="review-form-container">
+  <form method="post" action="/reviews/add-review" class="form">
+    <label for="user_name"
+      >Name:
+			<span id="user_name" class="user-name-display"><%= screen_name %></span>
+			<input type="hidden" name="user_name" value="<%= screen_name %>" />
+    </label>
+		<label for="review_text" class="review-text"
+			>Review:
+			<textarea rows="4" cols="50" name="review_text" id="review_text" required placeholder="Enter your review here..."
+				minlength="3"><%= locals.review_text ? locals.review_text.trim() : '' %></textarea>
+			<input type="hidden" name="account_id" value="<%= account_id %>" />
+			<input type="hidden" name="inv_id" value="<%= inv_id %>" />
+		</label>
+		<input type="submit" value="Submit Review" class="manage-btn" />
+  </form>
+</div>

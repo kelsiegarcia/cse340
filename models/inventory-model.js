@@ -41,8 +41,6 @@ async function getInventoryById(inv_id) {
   }
 }
 
-// add new classification
-// inventory management
 /* ***************************
  *  Add new classification
  * ************************** */

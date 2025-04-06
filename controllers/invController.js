@@ -1,5 +1,7 @@
 const invModel = require('../models/inventory-model');
 const utilities = require('../utilities/');
+const ejs = require('ejs');
+const reviewModel = require('../models/review-model');
 
 const invCont = {};
 
@@ -35,10 +37,50 @@ invCont.buildSingleVehicle = async function (req, res) {
   const data = await invModel.getInventoryById(inv_id);
   const carDetailsGrid = await utilities.buildSingleVehiclePage(data);
   let nav = await utilities.getNav();
-  res.render('inventory/vehicle', {
-    title: 'Car Details',
+  const reviewData = await reviewModel.getReviewsByInventoryId(inv_id); // Fetch reviews
+
+  // Build HTML for displaying reviews
+  const reviewListHTML = await utilities.buildReviewListHTML(reviewData);
+
+  let addReview = '';
+  // check login, if logged in add a form to add a review
+  if (res.locals.loggedin) {
+    const screen_name =
+      req.user.account_firstname.charAt(0).toUpperCase() +
+      req.user.account_lastname.charAt(0).toUpperCase() +
+      req.user.account_lastname.slice(1).toLowerCase();
+    const account_id = req.user.account_id;
+
+    //create sub view to add review if logged in
+    const reviewFormData = {
+      screen_name,
+      account_id,
+      inv_id,
+      errors: null,
+      title: 'Add Review',
+    };
+    addReview = await ejs.renderFile(
+      './views/reviews/add-review.ejs',
+      reviewFormData
+    );
+  } else {
+    addReview =
+      '<p class="review-message">You must first <a href="/account/login">login</a> to write a review.</p>';
+  }
+
+  // console.log(data);
+
+  const vehicleName =
+    data && data[0]
+      ? data[0].inv_year + ' ' + data[0].inv_make + ' ' + data[0].inv_model
+      : 'Vehicle Details';
+  res.render('./inventory/vehicle', {
+    title: vehicleName,
     nav,
     carDetailsGrid,
+    reviewTitle: 'Customer Reviews', // Add review title for the view
+    reviewList: reviewListHTML, // Pass the formatted review list
+    addReview,
     errors: null,
   });
 };

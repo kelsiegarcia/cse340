@@ -186,7 +186,7 @@ validate.checkUpdateData = async (req, res, next) => {
   let nav = await utilities.getNav();
   const { account_firstname, account_lastname, account_email } = req.body;
   const account_id = req.params.account_id;
-  const currentAccount = await accountModel.getAccountById(account_id); // Fetch account details
+  const currentAccount = await accountModel.getAccountById(account_id);
   let errors = [];
   if (currentAccount && account_email != currentAccount.account_email) {
     const emailExists = await accountModel.checkExistingEmail(account_email);

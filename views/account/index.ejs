@@ -21,6 +21,7 @@
 			<div class="heading">
 			<h2>Account Management</h2>
 			<p class="manage-btn"><a href="/account/edit/<%= accountData.account_id %>">Update Account Information</a></p></div>
+			
 
 			<% if (locals.accountData.account_type === "Admin" || locals.accountData.account_type === "Employee" ) { %>
 				<div class="heading">
@@ -28,6 +29,10 @@
 					<p class="manage-btn"><a href="/inv/">Access Inventory Management</a></p></div>
 			<% } %> 
 		<% } %>
+
+	</div>
+	<div>
+		<%- accountReviews %>
 	</div>
 </div>
 

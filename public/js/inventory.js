@@ -10,7 +10,7 @@ classificationList.addEventListener('change', function () {
     document.getElementById('inventoryDisplay').innerHTML = '';
     return;
   }
-  console.log(`classification_id is: ${classification_id}`);
+  // console.log(`classification_id is: ${classification_id}`);
   let classIdURL = '/inv/getInventory/' + classification_id;
   fetch(classIdURL)
     .then(function (response) {
@@ -39,7 +39,7 @@ function buildInventoryList(data) {
   dataTable += '<tbody>';
   // Iterate over all vehicles in the array and put each in a row
   data.forEach(function (element) {
-    console.log(element.inv_id + ', ' + element.inv_model);
+    // console.log(element.inv_id + ', ' + element.inv_model);
     dataTable += `<tr><td>${element.inv_make} ${element.inv_model}</td>`;
     dataTable += `<td><a href='/inv/edit/${element.inv_id}' title='Click to update'>Modify</a></td>`;
     dataTable += `<td><a href='/inv/delete/${element.inv_id}' title='Click to delete'>Delete</a></td></tr>`;

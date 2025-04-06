@@ -20,6 +20,7 @@ const pool = require('./database/');
 const accountRoute = require('./routes/accountRoute');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const reviewRoute = require('./routes/reviewRoute');
 
 /* ***********************
  * Middleware
@@ -76,6 +77,8 @@ app.get(
   utilities.checkAuth,
   utilities.handleErrors(invController.buildManagement)
 );
+app.use('/reviews', utilities.handleErrors(reviewRoute));
+// app.use('/review', reviewRoute);
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {

@@ -417,7 +417,7 @@ footer {
 	cursor: pointer;
 	font-size: 1em;
 	transition: background-color 0.2s ease-in-out;
-	width: 100%;
+	width: auto;
 	text-decoration: none;
 	text-align: center;
 	
@@ -488,3 +488,41 @@ table tr td:first-child {
 	flex-direction: column;
 	align-items: center;
 }
+
+.reviews-list-inv p {
+	font-size: 1.5rem;
+
+}
+
+.reviews-list-inv li {
+	border: 1px solid #0056b3;
+	padding: 5px;
+	margin: 15px;
+	border-radius: 3px;
+}
+
+.reviews-list-inv {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.review-list h1 {
+	font-size: 2rem;
+	text-align: 20px;
+}
+
+.review-text {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.add-review h1 {
+	font-size: 2rem;
+	padding-left: 20px;
+}
+
+/* .review-form-container .manage-btn {
+	width: 0;
+} */
